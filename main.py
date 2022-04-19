@@ -1,7 +1,5 @@
 import csv
-import traceback
 import requests
-from bs4 import BeautifulSoup
 import wget
 from zipfile import ZipFile
 import xml.etree.ElementTree as ET
@@ -9,7 +7,7 @@ import boto.s3.connection
 from io import StringIO
 import boto3
 import pandas as pd
-import json
+
 import logging
 
 logging.basicConfig(filename='StellEye.log', level=logging.INFO,
@@ -18,7 +16,7 @@ logging.basicConfig(filename='StellEye.log', level=logging.INFO,
 
 def getXML(link):  # Ex1
     try:
-        response = requests.get(link)  # Code based on this Website https://pybit.es/articles/download-xml-file/
+        response = requests.get(link)
     except Exception:
         logging.exception("Error: ")
         raise
@@ -37,7 +35,7 @@ def find_download(filepath):  # Ex2
 
     for i in root.findall("./result/doc"):
         if i.find("str[@name='file_type']").text == 'DLTINS':
-            download_link_text=i.find("str[@name='download_link']").text
+            download_link_text = i.find("str[@name='download_link']").text
             break
     try:
         wget.download(download_link_text, "important_file.zip")
@@ -97,8 +95,8 @@ def write_xml_to_csv(xml_file):  # Ex4
 
 
 def aws_s3_bucket(csv_file):  # Ex5
-    AWSAccessKeyId = "AKIAWQD6BQBNGNIKGSNF"  # code was based on this video content
-    AWSSecretKey = "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"
+    AWSAccessKeyId = "****"  # deleted for security purposes
+    AWSSecretKey = "****"  # deleted for security purposes
 
     try:
         conn = boto.connect_s3(
@@ -127,9 +125,9 @@ def aws_s3_bucket(csv_file):  # Ex5
     return logging.info("Ex5: Csv stored in AWS S3 bucket")
 
 
-
 if __name__ == '__main__':
-    getXML(r'https://registers.esma.europa.eu/solr/esma_registers_firds_files/select?q=*&fq=publication_date:%5B2021-01-17T00:00:00Z+TO+2021-01-19T23:59:59Z%5D&wt=xml&indent=true&start=0&rows=100')
+    getXML(
+        r'https://registers.esma.europa.eu/solr/esma_registers_firds_files/select?q=*&fq=publication_date:%5B2021-01-17T00:00:00Z+TO+2021-01-19T23:59:59Z%5D&wt=xml&indent=true&start=0&rows=100')
     find_download("data.xml")
     unzip_download("important_file.zip")
     write_xml_to_csv('DLTINS_20210117_01of01.xml')
