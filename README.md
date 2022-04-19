@@ -33,4 +33,4 @@ ____
 
 * Function aws_s3_bucket, is relative to exercise 5;
 
-* About exercise 6, even though it was optional, I tried to do it but in the end I couldn't solve it . My main problem was getting the csv with the lambda function, since I couldn't search it in my local files, I tried different methods but unfortunatelly none of them worked. It was my first time working with Amazon Web Services (AWS).
+* About exercise 6, even though it was optional, I tried to do it but in the end I couldn't solve it. My main problem was getting the csv with the lambda function, since I couldn't search it in my local files. I tried different methods but unfortunatelly none of them worked. It was my first time working with Amazon Web Services (AWS).
