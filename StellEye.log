@@ -1,0 +1,5 @@
+2022-04-19 17:58:34,523:INFO:Ex1: XML download
+2022-04-19 17:58:35,834:INFO:Ex2: Zip downloaded
+2022-04-19 17:58:36,490:INFO:Ex3: Zip extracted
+2022-04-19 17:58:45,961:INFO:Ex4: Csv created
+2022-04-19 17:59:03,348:INFO:Ex5: Csv stored in AWS S3 bucket
